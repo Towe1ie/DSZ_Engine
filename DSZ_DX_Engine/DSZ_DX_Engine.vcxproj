@@ -160,7 +160,6 @@
     <ClCompile Include="SpriteShader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContentLoader.h" />
     <ClInclude Include="PNG_Texture.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteShader.h" />

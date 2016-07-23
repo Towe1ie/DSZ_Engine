@@ -1,17 +1,155 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Core">
+      <UniqueIdentifier>{1c62bcdc-88dd-4cea-9511-d69aaf8e7388}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Core\h">
+      <UniqueIdentifier>{446a30fb-3de5-43d4-bfe2-9fb9c45d0160}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Core\cpp">
+      <UniqueIdentifier>{54eae404-bd92-422f-a332-4034ded924d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{5ab7f382-72b8-419e-91a0-b6332ab75d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Shaders">
+      <UniqueIdentifier>{1ac57378-7bae-4034-8c28-a94db0a4cf65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Shaders\h">
+      <UniqueIdentifier>{870c8472-1b38-4fe9-be00-a26f5adad7ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Shaders\cpp">
+      <UniqueIdentifier>{f80a9e03-afac-4aa8-8d4d-7dc64abfd775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Shaders\hlsl">
+      <UniqueIdentifier>{f09d47fc-e830-479e-9afa-4f63043042ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Textures">
+      <UniqueIdentifier>{a7410136-9ee5-4fe2-a9a9-2f274692e270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Textures\h">
+      <UniqueIdentifier>{32f40dcf-6907-4826-b412-2eeb310558ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Textures\cpp">
+      <UniqueIdentifier>{95757393-1717-4df0-b39f-4679ad50085a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{9d316205-c23e-4fa3-8563-2ff3c8f8dae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\h">
+      <UniqueIdentifier>{c0986d20-7546-48c0-9dc3-9ed819ea5c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\cpp">
+      <UniqueIdentifier>{169475f0-402a-4acb-98e9-4d1ef1f9867e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameplay Framework">
+      <UniqueIdentifier>{ec387fe0-bc86-4786-b90e-ef4c3269a004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameplay Framework\h">
+      <UniqueIdentifier>{7f411bfe-d31b-4b1f-9ca6-d77775258148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameplay Framework\cpp">
+      <UniqueIdentifier>{ccd975ba-e191-4aed-be2f-8dfbba244210}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ps.hlsl">
+      <Filter>Graphics\Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="SpritePS.hlsl">
+      <Filter>Graphics\Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="SpriteVS.hlsl">
+      <Filter>Graphics\Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="vs.hlsl">
+      <Filter>Graphics\Shaders\hlsl</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D3D11API.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCore.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteShader.cpp">
+      <Filter>Graphics\Shaders\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="HLSL_Shader.cpp">
+      <Filter>Graphics\Shaders\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="PNG_Texture.cpp">
+      <Filter>Graphics\Textures\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Graphics\Textures\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicGeometry.cpp">
+      <Filter>Utils\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Utils\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceShooterGame.cpp">
+      <Filter>Gameplay Framework\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Gameplay Framework\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EngineCore.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsAPI.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D11API.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="HLSL_Shader.h">
+      <Filter>Graphics\Shaders\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Graphics\Shaders\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteShader.h">
+      <Filter>Graphics\Shaders\h</Filter>
+    </ClInclude>
+    <ClInclude Include="PNG_Texture.h">
+      <Filter>Graphics\Textures\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Graphics\Textures\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Graphics\Textures\h</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicGeomentry.h">
+      <Filter>Utils\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Utils\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Gameplay Framework\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceShooterGame.h">
+      <Filter>Gameplay Framework\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h" />
   </ItemGroup>
 </Project>
