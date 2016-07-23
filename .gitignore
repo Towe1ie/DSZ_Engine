@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/ThirdParties
+/DSZ_DX_Engine/Resources/img2.png
+/DSZ_DX_Engine/Resources/img1.png
