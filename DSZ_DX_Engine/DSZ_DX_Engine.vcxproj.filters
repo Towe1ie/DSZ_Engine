@@ -52,6 +52,15 @@
     <Filter Include="Gameplay Framework\cpp">
       <UniqueIdentifier>{ccd975ba-e191-4aed-be2f-8dfbba244210}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gameplay Framework\Components">
+      <UniqueIdentifier>{d54d5324-2603-445e-85e4-7c20c283de2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameplay Framework\Components\h">
+      <UniqueIdentifier>{69701032-e11d-4809-aca7-50d1f90a618b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameplay Framework\Components\cpp">
+      <UniqueIdentifier>{ef0db60f-7fbb-4e6c-880d-d0e5568134fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ps.hlsl">
@@ -103,6 +112,12 @@
     </ClCompile>
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Actor.cpp">
+      <Filter>Gameplay Framework\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SP.cpp">
+      <Filter>Gameplay Framework\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -151,5 +166,11 @@
       <Filter>Gameplay Framework\h</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Actor.h">
+      <Filter>Gameplay Framework\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SP.h">
+      <Filter>Gameplay Framework\h</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

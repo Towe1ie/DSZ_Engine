@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="BasicGeometry.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D3D11API.cpp" />
@@ -155,12 +156,15 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PNG_Texture.cpp" />
+    <ClCompile Include="SP.cpp" />
     <ClCompile Include="SpaceShooterGame.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteShader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="PNG_Texture.h" />
+    <ClInclude Include="SP.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteShader.h" />
     <ClInclude Include="Camera.h" />
