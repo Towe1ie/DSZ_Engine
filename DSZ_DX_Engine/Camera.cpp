@@ -2,7 +2,7 @@
 #include "Input.h"
 #include <Windows.h>
 #include "EngineCore.h"
-#include "BasicGeomentry.h"
+#include "DSZ_Math.h"
 
 using namespace DirectX;
 
@@ -23,18 +23,6 @@ void Camera::Update(GameTime& gameTime)
 {
 	if (Input::IsButtonDown(LEFT))
 	{
-		if (Input::IsKeyDown(VK_UP))
-			position.y += 0.0001f;
-
-		if (Input::IsKeyDown(VK_DOWN))
-			position.y -= 0.0001f;
-
-		if (Input::IsKeyDown(VK_RIGHT))
-			position.x += 0.0001f;
-
-		if (Input::IsKeyDown(VK_LEFT))
-			position.x -= 0.0001f;
-
 		position.x -= Input::WGetMouseDelta().x;
 		position.y += Input::WGetMouseDelta().y;
 	}

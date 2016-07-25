@@ -11,6 +11,10 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
+#include "Renderer.h"
+#include "World.h"
+#include "BasicShader.h"
+#include "PhysicsManager.h"
 
 EngineCore* EngineCore::engineInstance = nullptr;
 LPCWSTR EngineCore::engineName = L"DSZ_DX_Engine";
@@ -129,24 +133,27 @@ void EngineCore::destroyWindow()
 void EngineCore::gameLoop()
 {
 	MSG msg;
-	int i = 0;
-	Triangle tr;
 
 	Sprite::SpriteShader = new SpriteShader();
 	Sprite::SpriteShader->Compile("SpriteVS.hlsl", "SpritePS.hlsl");
 	Sprite::SpriteShader->Init();
 	Sprite::Init();
 
-	shader = new HLSL_Shader();
-	shader->Compile("vs.hlsl", "ps.hlsl");
-	shader->Init();
+
+	basicShader = new BasicShader();
+	basicShader->Compile("BasicVS.hlsl", "BasicPS.hlsl");
+	basicShader->Init();
 
 	Grid grid(20);
 
-	Camera camera(res_x/(float)res_y);
-	camera.SetWidth(10);
-	currentCamera = &camera;
-	
+	Level* defaultLevel = World::CreateNewLevel();
+	World::SetCurrentLevel(defaultLevel);
+
+	Camera camera(res_x / (float)res_y);
+	camera.SetWidth(40);
+	defaultLevel->AddCamera(&camera);
+	defaultLevel->currentCamera = &camera;
+
 	currentGame->LoadContent();
 
 	while (1)
@@ -157,12 +164,9 @@ void EngineCore::gameLoop()
 		this->gameTime.currentTime = currentTime;
 
 		double elapsed = gameTime.dt();
-		
 
 		if (elapsed >= 1 / targetFPS)
 		{
-			
-
 			while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 			{
 				TranslateMessage(&msg);
@@ -170,20 +174,15 @@ void EngineCore::gameLoop()
 			}
 
 			Input::Update();
-			currentGame->Update(gameTime);
-			
-			//printf("W mouse delta %f %f\n", Input::WGetMouseDelta().x, Input::WGetMouseDelta().y);
+			World::Update(gameTime);
+			PhysicsManager::Update(gameTime);
 
-			if (Input::IsKeyDown(VK_ESCAPE))
+			if (Input::IsKeyDown(Key::ESC))
 				break;
 
-			camera.Update(gameTime);
-
 			currentAPI->BeginScene();
-			shader->SetViewMatrix(camera.GetViewMatrix());
 			grid.Render();
-			//tr.Render();
-			//DebugDrawLine(XMFLOAT2(-1, -1), XMFLOAT2(1, 1), XMFLOAT4(1, 0, 0, 1));
+			Renderer::Render();
 			currentGame->Render();
 			currentAPI->EndScene();
 
@@ -195,11 +194,6 @@ void EngineCore::gameLoop()
 
 	currentGame->UnloadContent();
 	Sprite::Uninit();
-}
-
-Camera* EngineCore::GetCurrentCamera()
-{
-	return engineInstance->currentCamera;
 }
 
 UINT EngineCore::GetRes_x()
@@ -313,19 +307,3 @@ LRESULT CALLBACK WindowProc(
 	}
 }
 
-GameTime::GameTime()
-{
-	QueryPerformanceCounter(&currentTime);
-	QueryPerformanceCounter(&lastUpdateTime);
-	QueryPerformanceFrequency(&clock);
-}
-
-double GameTime::dt()
-{
-	LARGE_INTEGER elapsed;
-	elapsed.QuadPart = currentTime.QuadPart - lastUpdateTime.QuadPart;
-
-	double dt = ((double)elapsed.QuadPart) / clock.QuadPart;
-
-	return dt;
-}

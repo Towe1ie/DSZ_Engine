@@ -3,13 +3,14 @@
 #include <DirectXMath.h>
 
 enum MouseButton { LEFT = 0, MIDDLE, RIGHT };
+enum class Key { ESC = 0x1B, LEFT = 0x25, UP, RIGHT, DOWN, A = 0x41, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z};
 
 class Input
 {
 public:
 	static void Update();
 
-	static bool IsKeyDown(unsigned int);
+	static bool IsKeyDown(Key key);
 	static bool IsButtonDown(MouseButton button);
 
 	static DirectX::XMFLOAT2 SGetMousePos();
@@ -20,8 +21,8 @@ public:
 
 private:
 	static void Initialize();
-	static void KeyDown(unsigned int);
-	static void KeyUp(unsigned int);
+	static void KeyDown(unsigned int input);
+	static void KeyUp(unsigned int input);
 	static void ButtonDown(MouseButton button);
 	static void ButtonUp(MouseButton button);
 

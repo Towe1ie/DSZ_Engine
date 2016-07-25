@@ -1,9 +1,10 @@
 #include "BasicGeomentry.h"
 #include "EngineCore.h"
 #include "GraphicsAPI.h"
-#include "HLSL_Shader.h"
-
-HLSL_Shader* shader;
+#include "BasicShader.h"
+#include "Globals.h"
+#include "World.h"
+#include "DSZ_Math.h"
 
 Vertex::Vertex(XMFLOAT3 pos, XMFLOAT4 color)
 {
@@ -57,7 +58,12 @@ Triangle::Triangle()
 
 void Triangle::Render()
 {
-	shader->Activate();
+	basicShader->cpu_vs_buffer0.useVertexColor = true;
+	basicShader->cpu_vs_buffer0.color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+	basicShader->cpu_vs_buffer0.viewMatrix = World::GetCurrentLevel()->currentCamera->GetViewMatrix();
+	basicShader->cpu_vs_buffer0.worldMatrix = XMMatrixIdentity();
+	basicShader->SetParameters();
+	basicShader->Activate();
 
 	ID3D11DeviceContext *devcon = (ID3D11DeviceContext*)EngineCore::GetGraphicsAPI()->GetDeviceContext();
 
@@ -101,33 +107,64 @@ void DebugDrawLine(XMFLOAT2 v1, XMFLOAT2 v2, XMFLOAT4 color)
 	memcpy(ms.pData, buff, sizeof(Vertex) * 2);
 	devcon->Unmap(pVBuffer, NULL);
 
-	shader->Activate();
+	basicShader->cpu_vs_buffer0.viewMatrix = World::GetCurrentLevel()->currentCamera->GetViewMatrix();
+	basicShader->cpu_vs_buffer0.worldMatrix = XMMatrixIdentity();
+	basicShader->cpu_vs_buffer0.color = color;
+	basicShader->cpu_vs_buffer0.useVertexColor = true;
+	basicShader->SetParameters();
+	basicShader->Activate();
 
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
 	devcon->IASetVertexBuffers(0, 1, &pVBuffer, &stride, &offset);
 	devcon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 	devcon->Draw(2, 0);
+
+	pVBuffer->Release();
 }
 
-XMFLOAT2 operator-(XMFLOAT2 v1, XMFLOAT2 v2)
+void DebugDrawCircle(XMFLOAT2 center, float radius, XMFLOAT4 color, int segments)
 {
-	return XMFLOAT2(v1.x - v2.x, v1.y - v2.y);
-}
+	float da = XM_2PI / segments;
+	int vertex_cnt = segments + 1;
+	BasicShader::Vertex* vertices = new BasicShader::Vertex[vertex_cnt];
 
-XMFLOAT2 operator+(XMFLOAT2 v1, XMFLOAT2 v2)
-{
-	return XMFLOAT2(v1.x + v2.x, v1.y + v2.y);
-}
+	for (int i = 0; i < vertex_cnt; i++)
+	{
+		float a = i * da;
+		vertices[i].pos = XMFLOAT3(cosf(a), sinf(a), 0.0f) * radius;
+	}
 
-XMFLOAT2& operator+=(XMFLOAT2 &v, float s)
-{
-	v.x += s;
-	v.y += s;
-	return v;
-}
+	D3D11_BUFFER_DESC bd;
+	ZeroMemory(&bd, sizeof(bd));
+	bd.Usage = D3D11_USAGE_DYNAMIC;
+	bd.ByteWidth = sizeof(BasicShader::Vertex) * vertex_cnt;
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bd.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
 
-XMFLOAT2& operator-=(XMFLOAT2 &v, float s)
-{
-	return v += (-s);
+	ID3D11Device *dev = (ID3D11Device*)EngineCore::GetGraphicsAPI()->GetDevice();
+	ID3D11DeviceContext *devcon = (ID3D11DeviceContext*)EngineCore::GetGraphicsAPI()->GetDeviceContext();
+
+	ID3D11Buffer* pVBuffer;
+	dev->CreateBuffer(&bd, NULL, &pVBuffer);
+
+	D3D11_MAPPED_SUBRESOURCE ms;
+	devcon->Map(pVBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);
+	memcpy(ms.pData, vertices, sizeof(BasicShader::Vertex) * vertex_cnt);
+	devcon->Unmap(pVBuffer, NULL);
+
+	basicShader->cpu_vs_buffer0.viewMatrix = World::GetCurrentLevel()->currentCamera->GetViewMatrix();
+	basicShader->cpu_vs_buffer0.worldMatrix = XMMatrixTranspose(XMMatrixTranslation(center.x, center.y, 0.0f));
+	basicShader->cpu_vs_buffer0.color = color;
+	basicShader->cpu_vs_buffer0.useVertexColor = true;
+	basicShader->SetParameters();
+	basicShader->Activate();
+
+	UINT stride = sizeof(Vertex);
+	UINT offset = 0;
+	devcon->IASetVertexBuffers(0, 1, &pVBuffer, &stride, &offset);
+	devcon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
+	devcon->Draw(vertex_cnt, 0);
+
+	pVBuffer->Release();
 }

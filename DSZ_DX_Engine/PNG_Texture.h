@@ -7,7 +7,7 @@ class PNG_Texture : public Texture
 {
 public:
 	~PNG_Texture() override;
-	void Load(char* fileName) override;
+	void Load(const char* fileName) override;
 
 	ID3D11Texture2D* GetTexture2D();
 	ID3D11ShaderResourceView* GetShaderResourceView();

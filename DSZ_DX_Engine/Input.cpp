@@ -3,7 +3,8 @@
 #include <Windows.h>
 #include "EngineCore.h"
 #include "Camera.h"
-#include "BasicGeomentry.h"
+#include "DSZ_Math.h"
+#include "World.h"
 
 using namespace DirectX;
 
@@ -31,9 +32,9 @@ void Input::KeyUp(unsigned int input)
 	keys[input] = false;
 }
 
-bool Input::IsKeyDown(unsigned int key)
+bool Input::IsKeyDown(Key key)
 {
-	return keys[key];
+	return keys[(int)key];
 }
 
 bool Input::IsButtonDown(MouseButton button)
@@ -75,13 +76,13 @@ DirectX::XMFLOAT2 Input::SGetMouseDelta()
 
 XMFLOAT2 Input::WGetMousePos()
 {
-	Camera* cam = EngineCore::GetCurrentCamera();
+	Camera* cam = World::GetCurrentLevel()->currentCamera;
 	return cam->WorldToView(currentMouseCoord);
 }
 
 DirectX::XMFLOAT2 Input::WGetMouseDelta()
 {
-	Camera* cam = EngineCore::GetCurrentCamera();
+	Camera* cam = World::GetCurrentLevel()->currentCamera;
 	return cam->WorldToView(currentMouseCoord) - cam->WorldToView(lastMouseCoord);
 }
 

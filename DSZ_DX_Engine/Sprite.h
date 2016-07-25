@@ -14,12 +14,14 @@ public:
 	static void Init();
 	static void Uninit();
 
-	DirectX::XMFLOAT3 pos;
+	static Texture* defaultTexture;
+	static Sprite* defaultSprite;
+
 public:
-	Sprite(Texture* texture);
+	Sprite(Texture* texture = nullptr);
 	~Sprite();
 
-	void Render();
+	void Render(DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 rotation, DirectX::XMFLOAT2 scale);
 
 private:
 	static ID3D11Buffer* quadBuff;

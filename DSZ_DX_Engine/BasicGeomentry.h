@@ -25,13 +25,4 @@ struct Triangle
 };
 
 void DebugDrawLine(XMFLOAT2 v1, XMFLOAT2 v2, XMFLOAT4 color);
-
-extern HLSL_Shader* shader;
-
-XMFLOAT2 operator-(XMFLOAT2 v1, XMFLOAT2 v2);
-
-XMFLOAT2 operator+(XMFLOAT2 v1, XMFLOAT2 v2);
-
-XMFLOAT2& operator+=(XMFLOAT2 &v, float s);
-
-XMFLOAT2& operator-=(XMFLOAT2 &v, float s);
+void DebugDrawCircle(XMFLOAT2 center, float radius, XMFLOAT4 color, int segments);

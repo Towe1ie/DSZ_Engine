@@ -5,7 +5,6 @@
 
 using namespace DirectX;
 
-
 void SpriteShader::SetParameters()
 {
 	D3D11_MAPPED_SUBRESOURCE ms0, ms1;

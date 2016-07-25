@@ -61,6 +61,54 @@
     <Filter Include="Gameplay Framework\Components\cpp">
       <UniqueIdentifier>{ef0db60f-7fbb-4e6c-880d-d0e5568134fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpaceShooterGame">
+      <UniqueIdentifier>{7087fad3-79f1-44b4-a57e-936bbdd4a6d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceShooterGame\h">
+      <UniqueIdentifier>{aab92682-c839-48db-9d49-3641af8259f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceShooterGame\cpp">
+      <UniqueIdentifier>{6e857d0f-19d8-4f32-a4a4-ae0d3eece747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceShooterGame\Actors">
+      <UniqueIdentifier>{63a0101d-3ed3-45bb-82d5-8b78aef6635c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceShooterGame\Actors\h">
+      <UniqueIdentifier>{3e10805e-c54d-4973-a0dc-1d915e22ef9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceShooterGame\Actors\cpp">
+      <UniqueIdentifier>{319f6454-5402-4282-a801-365a1cb852ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceManager">
+      <UniqueIdentifier>{498bc461-b319-4f74-9b8b-7d9a56887f56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceManager\h">
+      <UniqueIdentifier>{04a1e330-2cce-427f-878d-0e4f8ba445ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceManager\cpp">
+      <UniqueIdentifier>{49e79d58-f35d-49a6-8d88-e28fde6ea105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{9724dd4e-eb23-4ad9-9e18-9d8ebdb36218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Components">
+      <UniqueIdentifier>{ef38f3c2-b1a4-4290-a0fb-aabb88ac2e54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Components\cpp">
+      <UniqueIdentifier>{46aac94b-da46-465d-b7f8-381dfa4d182d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Components\h">
+      <UniqueIdentifier>{c6633857-9e04-4b82-84c8-b30fe7d304c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\PhysicsManager">
+      <UniqueIdentifier>{97df4733-c4a9-44a1-8e2f-dcbfccd7ab49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\PhysicsManager\h">
+      <UniqueIdentifier>{0b514939-96f6-4003-b436-32ef9bf5ade0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\PhysicsManager\cpp">
+      <UniqueIdentifier>{00015732-2231-4f05-a807-8d7c7304c77c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ps.hlsl">
@@ -73,6 +121,12 @@
       <Filter>Graphics\Shaders\hlsl</Filter>
     </FxCompile>
     <FxCompile Include="vs.hlsl">
+      <Filter>Graphics\Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="BasicVS.hlsl">
+      <Filter>Graphics\Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="BasicPS.hlsl">
       <Filter>Graphics\Shaders\hlsl</Filter>
     </FxCompile>
   </ItemGroup>
@@ -104,9 +158,6 @@
     <ClCompile Include="Grid.cpp">
       <Filter>Utils\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceShooterGame.cpp">
-      <Filter>Gameplay Framework\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Gameplay Framework\cpp</Filter>
     </ClCompile>
@@ -117,6 +168,45 @@
     </ClCompile>
     <ClCompile Include="SP.cpp">
       <Filter>Gameplay Framework\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Gameplay Framework\Components\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceShooterGame.cpp">
+      <Filter>SpaceShooterGame\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ASpaceship.cpp">
+      <Filter>SpaceShooterGame\Actors\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>ResourceManager\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Physics\PhysicsManager\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DSZ_Math.cpp">
+      <Filter>Utils\h</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeComponent.cpp">
+      <Filter>Physics\Components\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicShader.cpp">
+      <Filter>Graphics\Shaders\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="AEnemy.cpp">
+      <Filter>SpaceShooterGame\Actors\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,15 +252,63 @@
     <ClInclude Include="Camera.h">
       <Filter>Gameplay Framework\h</Filter>
     </ClInclude>
-    <ClInclude Include="SpaceShooterGame.h">
-      <Filter>Gameplay Framework\h</Filter>
-    </ClInclude>
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Actor.h">
       <Filter>Gameplay Framework\h</Filter>
     </ClInclude>
     <ClInclude Include="SP.h">
       <Filter>Gameplay Framework\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Gameplay Framework\Components\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Gameplay Framework\Components\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Gameplay Framework\Components\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceShooterGame.h">
+      <Filter>SpaceShooterGame\h</Filter>
+    </ClInclude>
+    <ClInclude Include="ASpaceship.h">
+      <Filter>SpaceShooterGame\Actors\h</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>ResourceManager\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleComponent.h">
+      <Filter>Physics\Components\h</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeComponent.h">
+      <Filter>Physics\Components\h</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Physics\PhysicsManager\h</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicPhysics.h">
+      <Filter>Physics\PhysicsManager\h</Filter>
+    </ClInclude>
+    <ClInclude Include="DSZ_Math.h">
+      <Filter>Utils\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicShader.h">
+      <Filter>Graphics\Shaders\h</Filter>
+    </ClInclude>
+    <ClInclude Include="AEnemy.h">
+      <Filter>SpaceShooterGame\Actors\h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

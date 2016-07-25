@@ -3,12 +3,16 @@
 #include "EngineCore.h"
 #include "Camera.h"
 #include <DirectXMath.h>
+#include "World.h"
+#include "PNG_Texture.h"
 
 using namespace DirectX;
 
 SpriteShader* Sprite::SpriteShader = nullptr;
 ID3D11Buffer* Sprite::quadBuff = nullptr;
 ID3D11Buffer* Sprite::indicesBuff = nullptr;
+Texture* Sprite::defaultTexture = nullptr;
+Sprite* Sprite::defaultSprite = nullptr;
 
 Sprite::Sprite(Texture* texture)
 	: texture(texture)
@@ -20,11 +24,11 @@ Sprite::~Sprite()
 
 }
 
-void Sprite::Render()
+void Sprite::Render(DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 rotation, DirectX::XMFLOAT2 scale)
 {
 	Sprite::SpriteShader->Activate();
-	Sprite::SpriteShader->cpu_vs_buffer0.viewMatrix = EngineCore::GetCurrentCamera()->GetViewMatrix();
-	Sprite::SpriteShader->cpu_vs_buffer1.worldMatrix = XMMatrixTranspose(XMMatrixTranslation(pos.x, pos.y, 0.f));
+	Sprite::SpriteShader->cpu_vs_buffer0.viewMatrix = World::GetCurrentLevel()->currentCamera->GetViewMatrix();// EngineCore::GetCurrentCamera()->GetViewMatrix();
+	Sprite::SpriteShader->cpu_vs_buffer1.worldMatrix = XMMatrixTranspose(XMMatrixTranslation(position.x, position.y, 0.f));
 	Sprite::SpriteShader->texture = texture;
 	Sprite::SpriteShader->SetParameters();
 
@@ -91,6 +95,10 @@ void Sprite::Init()
 	idata.SysMemSlicePitch = 0;
 
 	dev->CreateBuffer(&idesc, &idata, &indicesBuff);
+
+	defaultTexture = new PNG_Texture();
+	defaultTexture->Load("Resources\\logo.png");
+	defaultSprite = new Sprite(defaultTexture);
 }
 
 void Sprite::Uninit()

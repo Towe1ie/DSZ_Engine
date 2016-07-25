@@ -3,7 +3,7 @@
 #include <png.h>
 #include "EngineCore.h"
 
-void PNG_Texture::Load(char* file_name)
+void PNG_Texture::Load(const char* file_name)
 {
 	png_byte header[8];
 
@@ -96,20 +96,20 @@ void PNG_Texture::Load(char* file_name)
 		return;
 	}
 
-	DXGI_FORMAT format;
-	switch (color_type)
-	{
-		case PNG_COLOR_TYPE_RGB:
-			
-			break;
-		case PNG_COLOR_TYPE_RGB_ALPHA:
-			//format = GL_RGBA;
-			break;
-		default:
-			fprintf(stderr, "%s: Unknown libpng color type %d.\n", file_name, color_type);
-			this->texture = 0;
-			return;
-	}
+	//DXGI_FORMAT format;
+	//switch (color_type)
+	//{
+	//	case PNG_COLOR_TYPE_RGB:
+	//		
+	//		break;
+	//	case PNG_COLOR_TYPE_RGB_ALPHA:
+	//		//format = GL_RGBA;
+	//		break;
+	//	default:
+	//		fprintf(stderr, "%s: Unknown libpng color type %d.\n", file_name, color_type);
+	//		this->texture = 0;
+	//		return;
+	//}
 
 	// Update the png info struct.
 	png_read_update_info(png_ptr, info_ptr);

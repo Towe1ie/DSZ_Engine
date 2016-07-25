@@ -3,6 +3,9 @@
 #include "BasicGeomentry.h"
 #include "HLSL_Shader.h"
 #include <vector>
+#include "Globals.h"
+#include "BasicShader.h"
+#include "World.h"
 
 using namespace std;
 
@@ -63,8 +66,12 @@ Grid::~Grid()
 
 void Grid::Render()
 {
-	shader->Activate();
-	shader->SetWorldMatrix(XMMatrixIdentity());
+	basicShader->cpu_vs_buffer0.viewMatrix = World::GetCurrentLevel()->currentCamera->GetViewMatrix();
+	basicShader->cpu_vs_buffer0.worldMatrix = XMMatrixIdentity();
+	basicShader->cpu_vs_buffer0.useVertexColor = true;
+	basicShader->SetParameters();
+	basicShader->Activate();
+	
 
 	ID3D11DeviceContext *devcon = (ID3D11DeviceContext*)EngineCore::GetGraphicsAPI()->GetDeviceContext();
 
@@ -74,8 +81,7 @@ void Grid::Render()
 	devcon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 	devcon->Draw(2*(n * 2 + 1), 0);
 
-	shader->SetWorldMatrix(XMMatrixRotationZ(XM_PIDIV2));
+	basicShader->cpu_vs_buffer0.worldMatrix = XMMatrixRotationZ(XM_PIDIV2);
+	basicShader->SetParameters();
 	devcon->Draw(2 * (n * 2 + 1), 0);
-
-	shader->SetWorldMatrix(XMMatrixIdentity());
 }

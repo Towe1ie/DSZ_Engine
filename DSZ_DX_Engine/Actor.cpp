@@ -1,11 +1,34 @@
 #include "Actor.h"
+#include "SceneComponent.h"
+#include "SpriteComponent.h"
+#include "Sprite.h"
+#include "Renderer.h"
+#include "Level.h"
+#include "World.h"
+#include "EngineCore.h"
 
-Actor* Actor::objects = nullptr;
-int Actor::objects_size = 0;
-int Actor::objects_last = 0;
+using namespace DirectX;
 
-Actor** Actor::pointers = nullptr;
-int Actor::pointers_size = 0;
-int Actor::pointers_last = 0;
+Actor::Actor()
+{
+	sceneComponent = new SceneComponent();
+	spriteComponent = new SpriteComponent(Sprite::defaultSprite);
+	this->AttachComponent(sceneComponent);
+	this->AttachComponent(spriteComponent);
+	
+}
 
-int Actor::last_free_pointer = -1;
+void Actor::Spawn()
+{
+	World::GetCurrentLevel()->AddActor(this);
+}
+
+void Actor::AttachComponent(Component* component)
+{
+	component->owner = this;
+	component->RegisterComponent();
+}
+
+void Actor::Update(GameTime& gameTime)
+{
+}

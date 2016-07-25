@@ -2,25 +2,11 @@
 
 #include <Windows.h>
 #include "GraphicsAPI.h"
+#include "GameTime.h"
 
 class Game;
 class Camera;
 
-class GameTime
-{
-public:
-	double dt();
-
-private:
-	LARGE_INTEGER currentTime;
-	LARGE_INTEGER lastUpdateTime;
-
-	LARGE_INTEGER clock;
-
-private:
-	GameTime();
-	friend class EngineCore;
-};
 
 class EngineCore
 {
@@ -32,7 +18,7 @@ public:
 	static EngineCore* GetInstance();
 	static GraphicsAPI* GetGraphicsAPI();
 
-	static Camera* GetCurrentCamera();
+	//static Camera* GetCurrentCamera();
 
 	static UINT GetRes_x();
 	static UINT GetRes_y();
@@ -59,7 +45,7 @@ private:
 
 	GraphicsAPI* currentAPI;
 
-	Camera* currentCamera;
+	//Camera* currentCamera;
 	UINT res_x, res_y;
 
 	GameTime gameTime;
