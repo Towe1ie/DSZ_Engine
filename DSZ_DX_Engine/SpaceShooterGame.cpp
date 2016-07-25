@@ -7,13 +7,15 @@
 #include "SpriteComponent.h"
 #include "SceneComponent.h"
 #include "AEnemy.h"
+#include "Globals.h"
+#include "AProjectile.h"
 
 using namespace std;
 using namespace DirectX;
 
-
 static ASpaceship* actor;
 static AEnemy* enemy;
+//static AProjectile* projectile;
 
 void SpaceShooterGame::LoadContent()
 {
@@ -22,6 +24,9 @@ void SpaceShooterGame::LoadContent()
 
 	enemy = new AEnemy();
 	enemy->Spawn();
+
+	//projectile = new AProjectile();
+	//projectile->Spawn();
 }
 
 void SpaceShooterGame::UnloadContent()
@@ -31,7 +36,8 @@ void SpaceShooterGame::UnloadContent()
 
 void SpaceShooterGame::Update(GameTime& gameTime)
 {
-
+	if (Input::IsKeyPressed(Key::F11))
+		EngineCore::GetGraphicsAPI()->SetFullScreen(currFullscreen = !currFullscreen);
 }
 void SpaceShooterGame::Render()
 {

@@ -16,8 +16,7 @@ HLSL_Shader::HLSL_Shader()
 
 HLSL_Shader::~HLSL_Shader()
 {
-	perFrameBuffer->Release();
-	perObjectBuffer->Release();
+
 }
 
 void HLSL_Shader::Compile(const char* vs_filename, const char* ps_filename)
@@ -114,107 +113,8 @@ ID3D10Blob* HLSL_Shader::GetPSBlob() const
 	return psBlob;
 }
 
-void HLSL_Shader::SetInputLayout()
-{
-	ID3D11Device *dev = (ID3D11Device*)EngineCore::GetGraphicsAPI()->GetDevice();
-
-	D3D11_INPUT_ELEMENT_DESC ied[] =
-	{
-		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-	};
-	
-	dev->CreateInputLayout(
-		ied,
-		2,
-		vsBlob->GetBufferPointer(),
-		vsBlob->GetBufferSize(),
-		&pLayout
-	);
-}
-
-void HLSL_Shader::SetViewMatrix(DirectX::XMMATRIX viewMatrix)
-{
-	D3D11_MAPPED_SUBRESOURCE ms;
-	ID3D11DeviceContext* devcon = (ID3D11DeviceContext*)EngineCore::GetGraphicsAPI()->GetDeviceContext();
-
-	devcon->Map(
-		perFrameBuffer,
-		0,
-		D3D11_MAP_WRITE_DISCARD,
-		0,
-		&ms
-	);
-
-	//*((XMMATRIX*)ms.pData) = viewMatrix;
-	memcpy(ms.pData, &viewMatrix, sizeof(viewMatrix));
-
-	devcon->Unmap(perFrameBuffer, 0);
-
-	devcon->VSSetConstantBuffers(0, 1, &perFrameBuffer);
-}
-
-void HLSL_Shader::SetWorldMatrix(DirectX::XMMATRIX worldMatrix)
-{
-	D3D11_MAPPED_SUBRESOURCE ms;
-	ID3D11DeviceContext* devcon = (ID3D11DeviceContext*)EngineCore::GetGraphicsAPI()->GetDeviceContext();
-
-	devcon->Map(
-		perObjectBuffer,
-		0,
-		D3D11_MAP_WRITE_DISCARD,
-		0,
-		&ms
-	);
-
-	//*((XMMATRIX*)ms.pData) = viewMatrix;
-	memcpy(ms.pData, &worldMatrix, sizeof(worldMatrix));
-
-	devcon->Unmap(perObjectBuffer, 0);
-
-	devcon->VSSetConstantBuffers(1, 1, &perObjectBuffer);
-}
-
 void HLSL_Shader::Init()
 {
 	CreateBuffers();
 	SetInputLayout();
-}
-
-void HLSL_Shader::CreateBuffers()
-{
-	D3D11_BUFFER_DESC mbd;
-
-	mbd.Usage = D3D11_USAGE_DYNAMIC;
-	mbd.ByteWidth = sizeof(XMMATRIX);
-	mbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	mbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	mbd.MiscFlags = 0;
-	mbd.StructureByteStride = 0;
-
-	ID3D11Device* dev = (ID3D11Device*)EngineCore::GetGraphicsAPI()->GetDevice();
-
-	dev->CreateBuffer(
-		&mbd,
-		NULL,
-		&perFrameBuffer
-	);
-
-	dev->CreateBuffer(
-		&mbd,
-		NULL,
-		&perObjectBuffer
-	);
-}
-
-void HLSL_Shader::DestroyBuffers()
-{
-	perFrameBuffer->Release();
-	perObjectBuffer->Release();
-}
-
-
-void HLSL_Shader::SetParameters()
-{
-
 }

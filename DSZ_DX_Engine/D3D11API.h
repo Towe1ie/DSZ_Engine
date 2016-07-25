@@ -18,6 +18,8 @@ public:
 	void* GetDevice() override;
 	void* GetDeviceContext() override;
 
+	void SetFullScreen(bool bFullscreen) override;
+
 	void BeginScene() override;
 	void EndScene() override;
 private:

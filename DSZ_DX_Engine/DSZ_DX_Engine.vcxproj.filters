@@ -64,12 +64,6 @@
     <Filter Include="SpaceShooterGame">
       <UniqueIdentifier>{7087fad3-79f1-44b4-a57e-936bbdd4a6d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SpaceShooterGame\h">
-      <UniqueIdentifier>{aab92682-c839-48db-9d49-3641af8259f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SpaceShooterGame\cpp">
-      <UniqueIdentifier>{6e857d0f-19d8-4f32-a4a4-ae0d3eece747}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SpaceShooterGame\Actors">
       <UniqueIdentifier>{63a0101d-3ed3-45bb-82d5-8b78aef6635c}</UniqueIdentifier>
     </Filter>
@@ -109,18 +103,21 @@
     <Filter Include="Physics\PhysicsManager\cpp">
       <UniqueIdentifier>{00015732-2231-4f05-a807-8d7c7304c77c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpaceShooterGame\Shooting">
+      <UniqueIdentifier>{89fd4fc5-c976-47db-96be-1846f07460de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceShooterGame\Shooting\h">
+      <UniqueIdentifier>{a3ff9d41-f3b3-48a2-a22d-dc2fe94c669d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceShooterGame\Shooting\cpp">
+      <UniqueIdentifier>{70f04bb6-b6ee-40ae-bd6c-ba577be9233d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="ps.hlsl">
-      <Filter>Graphics\Shaders\hlsl</Filter>
-    </FxCompile>
     <FxCompile Include="SpritePS.hlsl">
       <Filter>Graphics\Shaders\hlsl</Filter>
     </FxCompile>
     <FxCompile Include="SpriteVS.hlsl">
-      <Filter>Graphics\Shaders\hlsl</Filter>
-    </FxCompile>
-    <FxCompile Include="vs.hlsl">
       <Filter>Graphics\Shaders\hlsl</Filter>
     </FxCompile>
     <FxCompile Include="BasicVS.hlsl">
@@ -181,9 +178,6 @@
     <ClCompile Include="World.cpp">
       <Filter>Core\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceShooterGame.cpp">
-      <Filter>SpaceShooterGame\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="ASpaceship.cpp">
       <Filter>SpaceShooterGame\Actors\cpp</Filter>
     </ClCompile>
@@ -196,9 +190,6 @@
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Physics\PhysicsManager\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="DSZ_Math.cpp">
-      <Filter>Utils\h</Filter>
-    </ClCompile>
     <ClCompile Include="ShapeComponent.cpp">
       <Filter>Physics\Components\cpp</Filter>
     </ClCompile>
@@ -207,6 +198,18 @@
     </ClCompile>
     <ClCompile Include="AEnemy.cpp">
       <Filter>SpaceShooterGame\Actors\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Gameplay Framework\Components\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DSZ_Math.cpp">
+      <Filter>Utils\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceShooterGame.cpp">
+      <Filter>SpaceShooterGame</Filter>
+    </ClCompile>
+    <ClCompile Include="AProjectile.cpp">
+      <Filter>SpaceShooterGame\Shooting\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -277,9 +280,6 @@
     <ClInclude Include="World.h">
       <Filter>Core\h</Filter>
     </ClInclude>
-    <ClInclude Include="SpaceShooterGame.h">
-      <Filter>SpaceShooterGame\h</Filter>
-    </ClInclude>
     <ClInclude Include="ASpaceship.h">
       <Filter>SpaceShooterGame\Actors\h</Filter>
     </ClInclude>
@@ -301,14 +301,20 @@
     <ClInclude Include="BasicPhysics.h">
       <Filter>Physics\PhysicsManager\h</Filter>
     </ClInclude>
-    <ClInclude Include="DSZ_Math.h">
-      <Filter>Utils\cpp</Filter>
-    </ClInclude>
     <ClInclude Include="BasicShader.h">
       <Filter>Graphics\Shaders\h</Filter>
     </ClInclude>
     <ClInclude Include="AEnemy.h">
       <Filter>SpaceShooterGame\Actors\h</Filter>
+    </ClInclude>
+    <ClInclude Include="DSZ_Math.h">
+      <Filter>Utils\h</Filter>
+    </ClInclude>
+    <ClInclude Include="AProjectile.h">
+      <Filter>SpaceShooterGame\Shooting\h</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceShooterGame.h">
+      <Filter>SpaceShooterGame</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

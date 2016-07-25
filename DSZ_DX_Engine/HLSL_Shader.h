@@ -20,11 +20,7 @@ public:
 	void Init() override;
 	virtual void Activate() override;
 	virtual void Clean() override;
-	virtual void SetParameters() override;
-
-	
-	void SetViewMatrix(DirectX::XMMATRIX viewMatrix);
-	void SetWorldMatrix(DirectX::XMMATRIX worldMatrix);
+	virtual void SetParameters() override = 0;
 
 	const ID3D11VertexShader* GetVS() const;
 	const ID3D11PixelShader* GetPS() const;
@@ -32,9 +28,9 @@ public:
 	ID3D10Blob* GetPSBlob() const;
 
 protected:
-	virtual void CreateBuffers();
-	virtual void DestroyBuffers();
-	virtual void SetInputLayout();
+	virtual void CreateBuffers() = 0;
+	virtual void DestroyBuffers() = 0;
+	virtual void SetInputLayout() = 0;
 
 protected:
 	ID3D11VertexShader *pVS;    // the vertex shader
@@ -42,7 +38,4 @@ protected:
 	ID3D10Blob *vsBlob, *psBlob;
 
 	ID3D11InputLayout* pLayout;
-
-	ID3D11Buffer* perFrameBuffer;
-	ID3D11Buffer* perObjectBuffer;
 };

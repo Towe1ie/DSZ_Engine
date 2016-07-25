@@ -11,6 +11,7 @@ using namespace DirectX;
 
 
 bool Input::keys[256];
+bool Input::last_keys[256];
 bool Input::mouseButtons[3];
 XMFLOAT2 Input::lastMouseCoord = XMFLOAT2(0.f, 0.f);
 XMFLOAT2 Input::currentMouseCoord = XMFLOAT2(0.f, 0.f);
@@ -19,6 +20,7 @@ float Input::scrollValue = 0.0f;
 void Input::Initialize()
 {
 	memset(keys, false, sizeof(keys));
+	memset(last_keys, false, sizeof(last_keys));
 	memset(mouseButtons, false, sizeof(mouseButtons));
 }
 
@@ -35,6 +37,11 @@ void Input::KeyUp(unsigned int input)
 bool Input::IsKeyDown(Key key)
 {
 	return keys[(int)key];
+}
+
+bool Input::IsKeyPressed(Key key)
+{
+	return (keys[(int)key] == false && last_keys[(int)key] == true);
 }
 
 bool Input::IsButtonDown(MouseButton button)
@@ -55,7 +62,7 @@ void Input::ButtonUp(MouseButton button)
 void Input::Update()
 {
 	lastMouseCoord = currentMouseCoord;
-	//scrollValue = 0.f;
+	memcpy(last_keys, keys, 256 * sizeof(bool));
 
 	POINT p;
 	GetCursorPos(&p);

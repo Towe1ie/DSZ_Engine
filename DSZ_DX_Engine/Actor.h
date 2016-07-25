@@ -10,6 +10,7 @@
 class Actor
 {
 public:
+	SceneComponent* rootComponent = nullptr;
 	SpriteComponent* spriteComponent;
 	SceneComponent* sceneComponent;
 

@@ -13,6 +13,8 @@ public:
 	virtual void* GetDevice() = 0;
 	virtual void* GetDeviceContext() = 0;
 
+	virtual void SetFullScreen(bool bFullscreen) = 0;
+
 	virtual void BeginScene() = 0;
 	virtual void EndScene() = 0;
 };

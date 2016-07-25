@@ -6,7 +6,7 @@ class Component
 {
 public:
 	const Actor* GetOwner() const { return owner; };
-
+	
 protected:
 	virtual void RegisterComponent() { };
 

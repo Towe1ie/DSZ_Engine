@@ -1,5 +1,6 @@
 #include "D3D11API.h"
 #include "EngineCore.h"
+#include <dxgi.h>
 
 void D3D11API::Create(HWND hwnd)
 {
@@ -90,4 +91,9 @@ void* D3D11API::GetDevice()
 void* D3D11API::GetDeviceContext()
 {
 	return (void*)devcon;
+}
+
+void D3D11API::SetFullScreen(bool bFullscreen)
+{
+	swapchain->SetFullscreenState(bFullscreen, NULL);
 }

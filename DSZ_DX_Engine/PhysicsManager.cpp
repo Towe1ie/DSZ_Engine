@@ -11,7 +11,7 @@ std::map<CollisionChannel, std::vector<ShapeComponent*>> PhysicsManager::collisi
 CollisionCheckResult PhysicsManager::CheckCollision(CircleComponent* c1, CircleComponent* c2)
 {
 	CollisionCheckResult res;
-	XMFLOAT2 diff = c1->position - c2->position;
+	XMFLOAT2 diff = c1->GetWorldPosition() - c2->GetWorldPosition();
 
 	res.overlap = Length(diff) < (c1->radius + c2->radius);
 

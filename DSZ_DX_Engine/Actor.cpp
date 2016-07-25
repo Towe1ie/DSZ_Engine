@@ -15,6 +15,8 @@ Actor::Actor()
 	spriteComponent = new SpriteComponent(Sprite::defaultSprite);
 	this->AttachComponent(sceneComponent);
 	this->AttachComponent(spriteComponent);
+	rootComponent = sceneComponent;
+	spriteComponent->rootComponent = sceneComponent;
 	
 }
 

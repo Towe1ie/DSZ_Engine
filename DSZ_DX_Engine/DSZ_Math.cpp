@@ -43,3 +43,13 @@ DirectX::XMFLOAT3 operator*(DirectX::XMFLOAT3 v, float s)
 {
 	return XMFLOAT3(v.x * s, v.y * s, v.z * s);
 }
+
+DirectX::XMFLOAT3 operator*(DirectX::XMFLOAT3 v1, DirectX::XMFLOAT3 v2)
+{
+	return XMFLOAT3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
+}
+
+DirectX::XMFLOAT2 operator*(DirectX::XMFLOAT2 v1, DirectX::XMFLOAT2 v2)
+{
+	return XMFLOAT2(v1.x * v2.x, v1.y * v2.y);
+}

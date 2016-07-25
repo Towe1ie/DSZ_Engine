@@ -5,7 +5,6 @@
 
 Sprite* ASpaceship::spaceshipSprite = nullptr;
 
-
 void OnBeginOverlap()
 {
 	std::cout << "BeginOverlap\n";
@@ -15,7 +14,6 @@ void OnEndOverlap()
 {
 	std::cout << "EndOverlap\n";
 }
-
 
 ASpaceship::ASpaceship()
 {
@@ -32,6 +30,7 @@ ASpaceship::ASpaceship()
 	circleComponent->radius = 1.f;
 	circleComponent->checkChannels[CollisionChannel::ENEMY] = true;
 	this->AttachComponent(circleComponent);
+	circleComponent->rootComponent = sceneComponent;
 
 	circleComponent->OnOverlapBegin = OnBeginOverlap;
 	circleComponent->OnOverlapEnd = OnEndOverlap;
@@ -60,12 +59,9 @@ void ASpaceship::Update(GameTime& gameTime)
 	{
 		sceneComponent->position.x += (float)gameTime.dt() * speed;
 	}
-
-	circleComponent->position = sceneComponent->position;
-	
 }
 
 void ASpaceship::Render()
 {
-	DebugDrawCircle(circleComponent->position, circleComponent->radius, XMFLOAT4(1.f, 0.f, 0.f, 1.f), 16);
+	DebugDrawCircle(circleComponent->GetWorldPosition(), circleComponent->radius, XMFLOAT4(1.f, 0.f, 0.f, 1.f), 16);
 }

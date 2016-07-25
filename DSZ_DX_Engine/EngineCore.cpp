@@ -167,15 +167,17 @@ void EngineCore::gameLoop()
 
 		if (elapsed >= 1 / targetFPS)
 		{
+			Input::Update();
+
 			while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 			{
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
 
-			Input::Update();
 			World::Update(gameTime);
 			PhysicsManager::Update(gameTime);
+			currentGame->Update(gameTime);
 
 			if (Input::IsKeyDown(Key::ESC))
 				break;

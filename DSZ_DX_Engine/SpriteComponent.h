@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Component.h"
+#include "SceneComponent.h"
 #include "Renderer.h"
 
 class Sprite;
 
-class SpriteComponent : public Component
+class SpriteComponent : public SceneComponent
 {
 public:
 	SpriteComponent(Sprite* sprite = nullptr) : sprite(sprite) { }

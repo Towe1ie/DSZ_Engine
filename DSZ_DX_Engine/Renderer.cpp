@@ -13,8 +13,8 @@ void Renderer::Render()
 {
 	for (SpriteComponentIt it = spriteComponents.begin(); it != spriteComponents.end(); it++)
 	{
-		const Actor* owner = (*it)->GetOwner();
-		SceneComponent* sc = owner->sceneComponent;
-		(*it)->sprite->Render(sc->position, sc->rotation, sc->scale);
+		/*const Actor* owner = (*it)->GetOwner();
+		SceneComponent* sc = owner->sceneComponent;*/
+		(*it)->sprite->Render((*it)->GetWorldPosition(), (*it)->GetWorldRotation() , (*it)->GetWorldScale());
 	}
 }
