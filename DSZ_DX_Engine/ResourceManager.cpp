@@ -7,9 +7,10 @@ map<string, Texture*> ResourceManager::textures;
 
 void ResourceManager::LoadPNGTexture(std::string filename, std::string resource_name)
 {
-	PNG_Texture* texture = new PNG_Texture();
+	
 	if (textures.find(resource_name) == textures.end())
 	{
+		PNG_Texture* texture = new PNG_Texture();
 		texture->Load(filename.c_str());
 		textures[resource_name] = texture;
 	}

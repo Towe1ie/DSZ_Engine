@@ -4,20 +4,27 @@
 #include "Sprite.h"
 #include "CircleComponent.h"
 
+class ShootingComponent;
+
 class ASpaceship : public Actor
 {
 public:
-	ASpaceship();
+	ASpaceship(std::string name);
+	
 	virtual void Update(GameTime& gameTime) override;
-	virtual void InitDefaults() override;
 
 	float speed = 10.0f;
 
 	void Render();
 
 protected:
-	CircleComponent* circleComponent;
+	
+	virtual ~ASpaceship();
+
+	CircleComponent* circleComponent = nullptr;
+	ShootingComponent* shootingComponent = nullptr;
 
 	static Sprite* spaceshipSprite;
 
+	void OnHit(ShapeComponent* other);
 };

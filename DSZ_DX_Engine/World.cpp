@@ -1,4 +1,5 @@
 #include "World.h"
+#include "Level.h"
 
 std::vector<Level*> World::levels;
 Level* World::currentLevel;

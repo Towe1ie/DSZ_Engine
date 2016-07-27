@@ -147,11 +147,16 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AEnemy.cpp" />
+    <ClCompile Include="AIController.cpp" />
+    <ClCompile Include="AIEnemyIdle.cpp" />
+    <ClCompile Include="AIState.cpp" />
+    <ClCompile Include="AIStateMachine.cpp" />
     <ClCompile Include="AProjectile.cpp" />
     <ClCompile Include="ASpaceship.cpp" />
     <ClCompile Include="BasicGeometry.cpp" />
     <ClCompile Include="BasicShader.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="D3D11API.cpp" />
     <ClCompile Include="DSZ_Math.cpp" />
     <ClCompile Include="EngineCore.cpp" />
@@ -168,18 +173,30 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="ShapeComponent.cpp" />
+    <ClCompile Include="ShootingComponent.cpp" />
     <ClCompile Include="SP.cpp" />
     <ClCompile Include="SpaceShooterGame.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="SpriteShader.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="Weapons.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="ActorComponent.h" />
     <ClInclude Include="AEnemy.h" />
+    <ClInclude Include="AI.h" />
+    <ClInclude Include="AIController.h" />
+    <ClInclude Include="AIEnemyIdle.h" />
+    <ClInclude Include="AIState.h" />
+    <ClInclude Include="AIStateMachine.h" />
     <ClInclude Include="AProjectile.h" />
     <ClInclude Include="ASpaceship.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="Weapons.h" />
+    <ClInclude Include="Weapon.h" />
     <ClInclude Include="BasicPhysics.h" />
     <ClInclude Include="BasicShader.h" />
     <ClInclude Include="CircleComponent.h" />
@@ -193,6 +210,8 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="ShapeComponent.h" />
+    <ClInclude Include="ShootableComponent.h" />
+    <ClInclude Include="ShootingComponent.h" />
     <ClInclude Include="SP.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteComponent.h" />

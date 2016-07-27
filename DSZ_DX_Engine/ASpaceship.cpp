@@ -1,21 +1,19 @@
 #include "ASpaceship.h"
 #include "ResourceManager.h"
 #include "BasicGeomentry.h"
+#include "ShootingComponent.h"
+#include "Weapons.h"
 #include <iostream>
+#include "AProjectile.h"
+#include "Camera.h"
+#include "DSZ_Math.h"
 
 Sprite* ASpaceship::spaceshipSprite = nullptr;
 
-void OnBeginOverlap()
-{
-	std::cout << "BeginOverlap\n";
-}
 
-void OnEndOverlap()
-{
-	std::cout << "EndOverlap\n";
-}
 
-ASpaceship::ASpaceship()
+ASpaceship::ASpaceship(std::string name)
+	: Actor(name)
 {
 	if (spaceshipSprite == nullptr)
 	{
@@ -29,16 +27,29 @@ ASpaceship::ASpaceship()
 	circleComponent->ChangeChannel(CollisionChannel::PLAYER);
 	circleComponent->radius = 1.f;
 	circleComponent->checkChannels[CollisionChannel::ENEMY] = true;
-	this->AttachComponent(circleComponent);
 	circleComponent->rootComponent = sceneComponent;
+	circleComponent->OnOverlapBegin = std::bind(&ASpaceship::OnHit, this, std::placeholders::_1);
+	circleComponent->AttachTo(this);
+	
+	shootingComponent = new ShootingComponent();
 
-	circleComponent->OnOverlapBegin = OnBeginOverlap;
-	circleComponent->OnOverlapEnd = OnEndOverlap;
+	BasicRifle* basicRifle = new BasicRifle(shootingComponent);
+	DoubleBasicRifle* doubleBasicRifle = new DoubleBasicRifle(shootingComponent);
+	BasicProjectileFactory* fac = new BasicProjectileFactory();
+
+	basicRifle->projectileFactory = fac;
+	doubleBasicRifle->projectileFactory = fac;
+	shootingComponent->weapons["BasicRifle"] = basicRifle;
+	shootingComponent->weapons["DoubleBasicRifle"] = doubleBasicRifle;
+	shootingComponent->SetCurrentWeapon("DoubleBasicRifle");
+
+	shootingComponent->AttachTo(this);
 }
 
-void ASpaceship::InitDefaults()
+ASpaceship::~ASpaceship()
 {
-
+	circleComponent->Destroy();
+	shootingComponent->Destroy();
 }
 
 void ASpaceship::Update(GameTime& gameTime)
@@ -59,9 +70,18 @@ void ASpaceship::Update(GameTime& gameTime)
 	{
 		sceneComponent->position.x += (float)gameTime.dt() * speed;
 	}
+
+	if (Input::IsKeyDown(Key::SPACE))
+		shootingComponent->TryShoot();
+
 }
 
 void ASpaceship::Render()
 {
 	DebugDrawCircle(circleComponent->GetWorldPosition(), circleComponent->radius, XMFLOAT4(1.f, 0.f, 0.f, 1.f), 16);
+}
+
+void ASpaceship::OnHit(ShapeComponent* other)
+{
+	std::cout << "UMRI!\n";
 }

@@ -6,6 +6,8 @@
 class SceneComponent : public Component
 {
 public:
+	SceneComponent(SceneComponent* root = nullptr);
+
 	SceneComponent* rootComponent = nullptr;
 
 	DirectX::XMFLOAT2 position	= DirectX::XMFLOAT2(0.0f, 0.0f);

@@ -5,7 +5,8 @@
 enum MouseButton { LEFT = 0, MIDDLE, RIGHT };
 enum class Key
 {
-	ESC = 0x1B, 
+	ESC = 0x1B,
+	SPACE = 0x20,
 	LEFT = 0x25, UP, RIGHT, DOWN, 
 	A = 0x41, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 
 	F1 = 0x70, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12

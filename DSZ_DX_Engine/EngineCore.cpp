@@ -15,6 +15,9 @@
 #include "World.h"
 #include "BasicShader.h"
 #include "PhysicsManager.h"
+#include "Level.h"
+#include "Task.h"
+#include "AIController.h"
 
 EngineCore* EngineCore::engineInstance = nullptr;
 LPCWSTR EngineCore::engineName = L"DSZ_DX_Engine";
@@ -175,7 +178,9 @@ void EngineCore::gameLoop()
 				DispatchMessage(&msg);
 			}
 
+			Task::Update(gameTime);
 			World::Update(gameTime);
+			AIController::UpdateAllControllers(gameTime);
 			PhysicsManager::Update(gameTime);
 			currentGame->Update(gameTime);
 

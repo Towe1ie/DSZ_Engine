@@ -3,6 +3,12 @@
 
 using namespace DirectX;
 
+SceneComponent::SceneComponent(SceneComponent* root)
+	: rootComponent(root)
+{
+
+}
+
 XMFLOAT2 SceneComponent::GetWorldPosition()
 {
 	if (rootComponent != nullptr)

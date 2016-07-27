@@ -3,6 +3,7 @@
 #include "SceneComponent.h"
 #include "BasicPhysics.h"
 #include <map>
+#include <functional>
 
 class ShapeComponent : public SceneComponent
 {
@@ -11,19 +12,21 @@ private:
 	CollisionState collisionState = CollisionState::NONE;
 
 public:
-	ShapeComponent();
+	ShapeComponent(SceneComponent* root = nullptr);
 
 	bool ChecksCollision(CollisionChannel channel);
 
 	void ChangeChannel(CollisionChannel channel);
-	void (*OnOverlapBegin)(void) = nullptr;
-	void (*OnOverlapEnd)(void) = nullptr;
+
+	std::function<void(ShapeComponent*)> OnOverlapBegin = nullptr;
+	std::function<void()> OnOverlapEnd = nullptr;
 
 public:
 	std::map<CollisionChannel, bool> checkChannels;
 
 protected:
 	virtual void RegisterComponent() override;
+	virtual void UnRegisterComponent() override;
 
 	friend class PhysicsManager;
 };

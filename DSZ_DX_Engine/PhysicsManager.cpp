@@ -13,7 +13,7 @@ CollisionCheckResult PhysicsManager::CheckCollision(CircleComponent* c1, CircleC
 	CollisionCheckResult res;
 	XMFLOAT2 diff = c1->GetWorldPosition() - c2->GetWorldPosition();
 
-	res.overlap = Length(diff) < (c1->radius + c2->radius);
+	res.overlap = Length(diff) < (c1->GetRadiusScaled() + c2->GetRadiusScaled());
 
 	return res;
 }
@@ -51,18 +51,19 @@ void PhysicsManager::Update(GameTime& gameTime)
 							if (res.overlap)
 							{
 								foundOverlap = true;
+
 								if (first->collisionState == CollisionState::NONE)
 								{
 									first->collisionState = CollisionState::OVERLAPED;
 									if (first->OnOverlapBegin)
-										first->OnOverlapBegin();
+										first->OnOverlapBegin(second);
 								}
 
 								if (second->collisionState == CollisionState::NONE)
 								{
 									second->collisionState = CollisionState::OVERLAPED;
 									if (second->OnOverlapBegin)
-										second->OnOverlapBegin();
+										second->OnOverlapBegin(first);
 								}
 							}
 						}

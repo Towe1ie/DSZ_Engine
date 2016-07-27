@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "DSZ_Math.h"
 #include "World.h"
+#include "Level.h"
 
 using namespace DirectX;
 

@@ -2,7 +2,8 @@
 #include "PhysicsManager.h"
 #include <algorithm>
 
-ShapeComponent::ShapeComponent()
+ShapeComponent::ShapeComponent(SceneComponent* root)
+	: SceneComponent(root)
 {
 	
 }
@@ -28,6 +29,16 @@ void ShapeComponent::RegisterComponent()
 			PhysicsManager::collisionChannels[myChannel].push_back(this);
 		}
 	}
+}
+
+void ShapeComponent::UnRegisterComponent()
+{
+
+	auto begin = PhysicsManager::collisionChannels[myChannel].begin();
+	auto end = PhysicsManager::collisionChannels[myChannel].end();
+	auto it = std::find(begin, end, this);
+	if (it != end)
+		PhysicsManager::collisionChannels[myChannel].erase(it);
 }
 
 bool ShapeComponent::ChecksCollision(CollisionChannel channel)

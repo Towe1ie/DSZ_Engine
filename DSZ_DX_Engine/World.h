@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Level.h"
+
 #include <vector>
 class GameTime;
+class Level;
 
 class World
 {

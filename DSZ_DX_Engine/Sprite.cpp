@@ -5,6 +5,7 @@
 #include <DirectXMath.h>
 #include "World.h"
 #include "PNG_Texture.h"
+#include "Level.h"
 
 using namespace DirectX;
 
@@ -28,7 +29,7 @@ void Sprite::Render(DirectX::XMFLOAT2 position, DirectX::XMFLOAT2 rotation, Dire
 {
 	Sprite::SpriteShader->Activate();
 	Sprite::SpriteShader->cpu_vs_buffer0.viewMatrix = World::GetCurrentLevel()->currentCamera->GetViewMatrix();// EngineCore::GetCurrentCamera()->GetViewMatrix();
-	Sprite::SpriteShader->cpu_vs_buffer1.worldMatrix = XMMatrixTranspose(XMMatrixTranslation(position.x, position.y, 0.f));
+	Sprite::SpriteShader->cpu_vs_buffer1.worldMatrix = XMMatrixTranspose(XMMatrixMultiply(XMMatrixScaling(scale.x, scale.y, 1.0f), XMMatrixTranslation(position.x, position.y, 0.f)));
 	Sprite::SpriteShader->texture = texture;
 	Sprite::SpriteShader->SetParameters();
 

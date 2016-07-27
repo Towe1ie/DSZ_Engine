@@ -9,29 +9,47 @@
 #include "AEnemy.h"
 #include "Globals.h"
 #include "AProjectile.h"
+#include "ShootableComponent.h"
+#include "ResourceManager.h"
+#include "AI.h"
 
 using namespace std;
 using namespace DirectX;
 
-static ASpaceship* actor;
+static ASpaceship* spaceship;
 static AEnemy* enemy;
-//static AProjectile* projectile;
+static Actor* starfield;
 
 void SpaceShooterGame::LoadContent()
 {
-	actor = new ASpaceship();
-	actor->Spawn();
+	ResourceManager::LoadPNGTexture("Resources\\starfield.png", "starfield");
 
-	enemy = new AEnemy();
-	enemy->Spawn();
+	starfield = Actor::Spawn<Actor>("Starfield");
+	starfield->spriteComponent->sprite = new Sprite(ResourceManager::GetTexture("starfield"));
+	starfield->sceneComponent->scale.x = 30;
+	starfield->sceneComponent->scale.y = 15;
 
-	//projectile = new AProjectile();
-	//projectile->Spawn();
+	spaceship = Actor::Spawn<ASpaceship>("Spaceship");
+
+	enemy = Actor::Spawn<AEnemy>("Enemy1");
+
+	AIEnemyIdle* enemyIdle = new AIEnemyIdle();
+	AIEnemyFlee* enemyFlee = new AIEnemyFlee();
+
+	AIStateMachine* enemyStateMachine = new AIStateMachine();
+	enemyStateMachine->AddState(enemyIdle, "idle");
+	enemyStateMachine->AddState(enemyFlee, "flee");
+	enemyStateMachine->ChangeState("idle");
+
+	AIController* enemyController = new AIController();
+	enemyController->SetStateMachine(enemyStateMachine);
+	enemyController->Posses(enemy);
+	enemyController->RegisterController();
+
 }
 
 void SpaceShooterGame::UnloadContent()
 {
-
 }
 
 void SpaceShooterGame::Update(GameTime& gameTime)
@@ -41,6 +59,4 @@ void SpaceShooterGame::Update(GameTime& gameTime)
 }
 void SpaceShooterGame::Render()
 {
-	actor->Render();
-	enemy->Render();
 }

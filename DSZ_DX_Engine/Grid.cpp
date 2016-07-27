@@ -6,6 +6,8 @@
 #include "Globals.h"
 #include "BasicShader.h"
 #include "World.h"
+#include "Level.h"
+#include "Camera.h"
 
 using namespace std;
 

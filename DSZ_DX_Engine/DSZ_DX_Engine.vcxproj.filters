@@ -112,6 +112,9 @@
     <Filter Include="SpaceShooterGame\Shooting\cpp">
       <UniqueIdentifier>{70f04bb6-b6ee-40ae-bd6c-ba577be9233d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpaceShooterGame\AI">
+      <UniqueIdentifier>{6051cf81-74f8-40bd-be8d-8c05cd047768}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="SpritePS.hlsl">
@@ -169,9 +172,6 @@
     <ClCompile Include="SpriteComponent.cpp">
       <Filter>Gameplay Framework\Components\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Core\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Core\cpp</Filter>
     </ClCompile>
@@ -210,6 +210,33 @@
     </ClCompile>
     <ClCompile Include="AProjectile.cpp">
       <Filter>SpaceShooterGame\Shooting\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapons.cpp">
+      <Filter>SpaceShooterGame\Shooting\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootingComponent.cpp">
+      <Filter>SpaceShooterGame\Shooting\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Gameplay Framework\Components\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Task.cpp">
+      <Filter>Core\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="AIStateMachine.cpp">
+      <Filter>SpaceShooterGame\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AIController.cpp">
+      <Filter>SpaceShooterGame\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AIEnemyIdle.cpp">
+      <Filter>SpaceShooterGame\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AIState.cpp">
+      <Filter>SpaceShooterGame\AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,9 +298,6 @@
     <ClInclude Include="SceneComponent.h">
       <Filter>Gameplay Framework\Components\h</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Core\h</Filter>
-    </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Core\h</Filter>
     </ClInclude>
@@ -315,6 +339,42 @@
     </ClInclude>
     <ClInclude Include="SpaceShooterGame.h">
       <Filter>SpaceShooterGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootableComponent.h">
+      <Filter>SpaceShooterGame\Shooting\h</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootingComponent.h">
+      <Filter>SpaceShooterGame\Shooting\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>SpaceShooterGame\Shooting\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapons.h">
+      <Filter>SpaceShooterGame\Shooting\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Gameplay Framework\Components\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>Core\h</Filter>
+    </ClInclude>
+    <ClInclude Include="AIController.h">
+      <Filter>SpaceShooterGame\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIStateMachine.h">
+      <Filter>SpaceShooterGame\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIState.h">
+      <Filter>SpaceShooterGame\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIEnemyIdle.h">
+      <Filter>SpaceShooterGame\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>SpaceShooterGame\AI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

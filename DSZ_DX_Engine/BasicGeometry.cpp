@@ -5,6 +5,8 @@
 #include "Globals.h"
 #include "World.h"
 #include "DSZ_Math.h"
+#include "Level.h"
+#include "Camera.h"
 
 Vertex::Vertex(XMFLOAT3 pos, XMFLOAT4 color)
 {

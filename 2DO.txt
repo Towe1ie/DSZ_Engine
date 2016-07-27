@@ -1,0 +1,4 @@
+1) GUI i stanja
+2) Reciklaza aktora
+3) Enkapsulirati poziciju, rotaciju i skaliranje u Transform
+4) Kamera treba da bude aktor sa camera komponentom
